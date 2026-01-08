@@ -9,11 +9,7 @@ import {
 import { requireAuth } from "../middleware/auth";
 import type { AppEnv } from "../types";
 
-type EnvVarEnv = AppEnv & {
-  Variables: AppEnv["Variables"] & { projectId: string };
-};
-
-export const envVarRoutes = new Hono<EnvVarEnv>();
+export const envVarRoutes = new Hono<AppEnv>();
 
 // All env var routes require authentication
 envVarRoutes.use("*", requireAuth);
@@ -21,7 +17,7 @@ envVarRoutes.use("*", requireAuth);
 // List environment variables
 envVarRoutes.get("/", async (c) => {
   const userId = c.get("userId")!;
-  const projectId = c.req.param("projectId");
+  const projectId = c.req.param("projectId") as string;
   const environment = c.req.query("environment") as string | undefined;
 
   const envVarsList = await listEnvVars(
@@ -39,7 +35,7 @@ envVarRoutes.get("/", async (c) => {
 // Create environment variable
 envVarRoutes.post("/", async (c) => {
   const userId = c.get("userId")!;
-  const projectId = c.req.param("projectId");
+  const projectId = c.req.param("projectId") as string;
   const body = await c.req.json();
   const input = CreateEnvVarSchema.parse(body);
 
@@ -57,8 +53,8 @@ envVarRoutes.post("/", async (c) => {
 // Update environment variable
 envVarRoutes.patch("/:key", async (c) => {
   const userId = c.get("userId")!;
-  const projectId = c.req.param("projectId");
-  const key = c.req.param("key");
+  const projectId = c.req.param("projectId") as string;
+  const key = c.req.param("key") as string;
   const body = await c.req.json();
   const { value, environment } = body;
 
@@ -92,8 +88,8 @@ envVarRoutes.patch("/:key", async (c) => {
 // Delete environment variable
 envVarRoutes.delete("/:key", async (c) => {
   const userId = c.get("userId")!;
-  const projectId = c.req.param("projectId");
-  const key = c.req.param("key");
+  const projectId = c.req.param("projectId") as string;
+  const key = c.req.param("key") as string;
   const environment = c.req.query("environment");
 
   if (!environment) {

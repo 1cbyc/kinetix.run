@@ -181,7 +181,7 @@ export async function rollbackDeployment(
   // Mark as ready (instant rollback)
   await updateDeploymentStatus(newDeploymentId, "ready", {
     readyAt: new Date(),
-    url: targetDeployment.url,
+    url: targetDeployment.url ?? undefined,
   });
 
   return newDeployment;

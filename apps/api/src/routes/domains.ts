@@ -19,7 +19,7 @@ domainRoutes.use("*", requireAuth);
 // List domains
 domainRoutes.get("/", async (c) => {
   const userId = c.get("userId")!;
-  const { projectId } = c.req.param();
+  const projectId = c.req.param("projectId") as string;
 
   const domainsList = await listDomains(projectId, userId);
 
@@ -32,7 +32,7 @@ domainRoutes.get("/", async (c) => {
 // Add domain
 domainRoutes.post("/", async (c) => {
   const userId = c.get("userId")!;
-  const { projectId } = c.req.param();
+  const projectId = c.req.param("projectId") as string;
   const body = await c.req.json();
   const input = AddDomainSchema.parse(body);
 
@@ -59,7 +59,8 @@ domainRoutes.post("/", async (c) => {
 // Get domain
 domainRoutes.get("/:domainId", async (c) => {
   const userId = c.get("userId")!;
-  const { projectId, domainId } = c.req.param();
+  const projectId = c.req.param("projectId") as string;
+  const domainId = c.req.param("domainId") as string;
 
   const domain = await getDomainById(domainId, projectId, userId);
 
@@ -84,7 +85,8 @@ domainRoutes.get("/:domainId", async (c) => {
 // Verify domain
 domainRoutes.post("/:domainId/verify", async (c) => {
   const userId = c.get("userId")!;
-  const { projectId, domainId } = c.req.param();
+  const projectId = c.req.param("projectId") as string;
+  const domainId = c.req.param("domainId") as string;
 
   const domain = await verifyDomain(domainId, projectId, userId);
 
@@ -97,7 +99,8 @@ domainRoutes.post("/:domainId/verify", async (c) => {
 // Delete domain
 domainRoutes.delete("/:domainId", async (c) => {
   const userId = c.get("userId")!;
-  const { projectId, domainId } = c.req.param();
+  const projectId = c.req.param("projectId") as string;
+  const domainId = c.req.param("domainId") as string;
 
   await deleteDomain(domainId, projectId, userId);
 
