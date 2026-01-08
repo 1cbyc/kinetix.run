@@ -1,12 +1,17 @@
 import type { MiddlewareHandler } from "hono";
 import { RATE_LIMITS } from "@kinetix/shared";
 
+interface RateLimitConfig {
+  windowMs: number;
+  maxRequests: number;
+}
+
 // Simple in-memory rate limiter
 // In production, use Redis for distributed rate limiting
 const requests = new Map<string, { count: number; resetAt: number }>();
 
 export function rateLimiter(
-  config = RATE_LIMITS.api
+  config: RateLimitConfig = RATE_LIMITS.api
 ): MiddlewareHandler {
   return async (c, next) => {
     const ip = c.req.header("x-forwarded-for") || "unknown";

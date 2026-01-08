@@ -46,7 +46,7 @@ export const errorHandler: ErrorHandler = (err, c: Context) => {
           details: err.details,
         },
       },
-      err.status
+      err.status as 400 | 401 | 403 | 404 | 409 | 422 | 429 | 500
     );
   }
 

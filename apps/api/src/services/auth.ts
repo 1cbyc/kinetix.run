@@ -185,7 +185,12 @@ export async function verifyAccessToken(
       issuer: JWT_CONFIG.issuer,
     });
 
-    return payload as JWTPayload;
+    return {
+      sub: payload.sub as string,
+      email: (payload as { email?: string }).email || "",
+      iat: payload.iat as number,
+      exp: payload.exp as number,
+    };
   } catch {
     return null;
   }
@@ -197,7 +202,12 @@ async function verifyRefreshToken(token: string): Promise<JWTPayload | null> {
       issuer: JWT_CONFIG.issuer,
     });
 
-    return payload as JWTPayload;
+    return {
+      sub: payload.sub as string,
+      email: (payload as { email?: string }).email || "",
+      iat: payload.iat as number,
+      exp: payload.exp as number,
+    };
   } catch {
     return null;
   }
