@@ -11,6 +11,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
+    "@kinetix/builder": "workspace:*",
     "@kinetix/db": "workspace:*",
     "@kinetix/shared": "workspace:*",
     "@hono/node-server": "^1.8.0",
