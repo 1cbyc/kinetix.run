@@ -11,7 +11,11 @@ import {
 import { requireAuth } from "../middleware/auth";
 import type { AppEnv } from "../types";
 
-export const domainRoutes = new Hono<AppEnv>();
+type DomainEnv = AppEnv & {
+  Variables: AppEnv["Variables"] & { projectId: string };
+};
+
+export const domainRoutes = new Hono<DomainEnv>();
 
 // All domain routes require authentication
 domainRoutes.use("*", requireAuth);
