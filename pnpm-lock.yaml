@@ -137,6 +137,9 @@ importers:
       '@kinetix/shared':
         specifier: workspace:*
         version: link:../shared
+      drizzle-orm:
+        specifier: ^0.29.5
+        version: 0.29.5(postgres@3.4.8)
       hono:
         specifier: ^4.11.3
         version: 4.11.3

@@ -67,12 +67,10 @@ export class EdgeRouter {
         const routeResult = await this.router.routeRequest(hostname, path, method);
 
         if (!routeResult.found || !routeResult.function) {
-          return c.json(
-            {
-              error: routeResult.error?.message || "Not found",
-            },
-            404
-          );
+          c.status(404);
+          return c.json({
+            error: routeResult.error?.message || "Not found",
+          });
         }
 
         // Get environment variables
@@ -107,19 +105,20 @@ export class EdgeRouter {
         );
 
         if (!result.success || !result.response) {
-          return c.json(
-            {
-              error: result.error?.message || "Function execution failed",
-            },
-            500
-          );
+          c.status(500);
+          return c.json({
+            error: result.error?.message || "Function execution failed",
+          });
         }
 
         // Return response
         const response = result.response;
-        return c.json(
-          response.body ? JSON.parse(response.body) : null,
-          response.statusCode
+        return new Response(
+          response.body || null,
+          {
+            status: response.statusCode,
+            headers: response.headers,
+          }
         );
       } catch (error) {
         console.error("Edge router error:", error);
@@ -127,12 +126,10 @@ export class EdgeRouter {
         // Log error
         await this.logError(hostname, path, method, error, startTime);
 
-        return c.json(
-          {
-            error: "Internal server error",
-          },
-          500
-        );
+        c.status(500);
+        return c.json({
+          error: "Internal server error",
+        });
       }
     });
   }
@@ -194,14 +191,8 @@ export class EdgeRouter {
     startTime: number
   ): Promise<void> {
     try {
-      await db.insert(logEntries).values({
-        id: crypto.randomUUID(),
-        functionId: context.functionId,
-        deploymentId: context.deploymentId,
+      const metadata = {
         projectId: context.projectId,
-        level: result.success ? "info" : "error",
-        message: result.success ? "Function executed" : result.error?.message,
-        timestamp: new Date(),
         duration: Date.now() - startTime,
         statusCode: result.response?.statusCode,
         requestMethod: request.method,
@@ -211,6 +202,16 @@ export class EdgeRouter {
         coldStart: result.metrics?.coldStart,
         memoryUsed: result.metrics?.memoryUsed,
         logs: result.logs?.join("\n"),
+      };
+
+      await db.insert(logEntries).values({
+        id: crypto.randomUUID(),
+        functionId: context.functionId,
+        deploymentId: context.deploymentId,
+        level: result.success ? "info" : "error",
+        message: result.success ? "Function executed" : result.error?.message,
+        metadata: JSON.stringify(metadata),
+        timestamp: new Date(),
       });
     } catch (error) {
       console.error("Failed to log request:", error);
@@ -219,6 +220,7 @@ export class EdgeRouter {
 
   /**
    * Log error to database
+   * Note: This only logs errors that occur during function execution with valid context
    */
   private async logError(
     hostname: string,
@@ -227,20 +229,14 @@ export class EdgeRouter {
     error: any,
     startTime: number
   ): Promise<void> {
-    try {
-      await db.insert(logEntries).values({
-        id: crypto.randomUUID(),
-        level: "error",
-        message: error instanceof Error ? error.message : String(error),
-        timestamp: new Date(),
-        duration: Date.now() - startTime,
-        requestMethod: method,
-        requestUrl: `https://${hostname}${path}`,
-        logs: error instanceof Error ? error.stack : undefined,
-      });
-    } catch (logError) {
-      console.error("Failed to log error:", logError);
-    }
+    // For now, just log to console for routing errors without function context
+    console.error("Edge router error:", {
+      hostname,
+      path,
+      method,
+      error: error instanceof Error ? error.message : String(error),
+      duration: Date.now() - startTime,
+    });
   }
 
   /**
