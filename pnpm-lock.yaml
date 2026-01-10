@@ -129,6 +129,34 @@ importers:
         specifier: ^5.3.3
         version: 5.9.3
 
+  packages/edge-router:
+    dependencies:
+      '@kinetix/db':
+        specifier: workspace:*
+        version: link:../db
+      '@kinetix/shared':
+        specifier: workspace:*
+        version: link:../shared
+      hono:
+        specifier: ^4.11.3
+        version: 4.11.3
+      zod:
+        specifier: ^3.25.76
+        version: 3.25.76
+    devDependencies:
+      '@types/node':
+        specifier: 20.19.27
+        version: 20.19.27
+      rimraf:
+        specifier: 5.0.10
+        version: 5.0.10
+      tsup:
+        specifier: 8.5.1
+        version: 8.5.1(tsx@4.21.0)(typescript@5.9.3)
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
   packages/shared:
     dependencies:
       nanoid:
