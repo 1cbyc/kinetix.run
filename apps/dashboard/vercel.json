@@ -1,6 +1,6 @@
 {
-  "buildCommand": "cd ../.. && pnpm install && pnpm build --filter @kinetix/dashboard",
+  "buildCommand": "cd ../.. && pnpm build --filter @kinetix/dashboard",
   "outputDirectory": ".next",
-  "installCommand": "cd ../.. && pnpm install",
+  "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
   "framework": "nextjs"
 }
