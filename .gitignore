@@ -56,3 +56,4 @@ drizzle/
 *.ps1
 *.md
 !README.md
+.env.railway
