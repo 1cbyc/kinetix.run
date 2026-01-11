@@ -71,7 +71,33 @@ class ApiClient {
       );
     }
 
-    return data.data;
+    // Convert date strings to Date objects recursively
+    const convertDates = (obj: any): any => {
+      if (obj === null || obj === undefined) return obj;
+      if (Array.isArray(obj)) {
+        return obj.map(convertDates);
+      }
+      if (typeof obj === "object") {
+        const converted: any = {};
+        for (const key in obj) {
+          const value = obj[key];
+          if (
+            typeof value === "string" &&
+            /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(value)
+          ) {
+            converted[key] = new Date(value);
+          } else if (typeof value === "object") {
+            converted[key] = convertDates(value);
+          } else {
+            converted[key] = value;
+          }
+        }
+        return converted;
+      }
+      return obj;
+    };
+
+    return convertDates(data.data);
   }
 
   async get<T>(endpoint: string): Promise<T> {
