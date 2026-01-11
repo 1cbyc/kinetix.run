@@ -2,10 +2,10 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "cd ../.. && pnpm install --frozen-lockfile && pnpm build --filter @kinetix/api"
+    "buildCommand": "pnpm build --filter @kinetix/api"
   },
   "deploy": {
-    "startCommand": "pnpm start",
+    "startCommand": "cd apps/api && pnpm start",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }
