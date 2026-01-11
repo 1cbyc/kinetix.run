@@ -24,7 +24,7 @@
     "clean": "rimraf dist",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
-    "push": "drizzle-kit push",
+    "push": "drizzle-kit push:pg",
     "studio": "drizzle-kit studio"
   },
   "dependencies": {
