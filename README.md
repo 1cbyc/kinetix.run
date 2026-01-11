@@ -1,6 +1,6 @@
 # Kinetix.run - Serverless Platform
 
-**A complete, production-ready serverless platform built with modern technologies**
+**A serverless platform built with modern technologies**
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/1cbyc/kinetix.run)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-blue)](https://www.typescriptlang.org/)
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Kinetix.run is a comprehensive serverless platform that enables developers to deploy and run functions at scale. Built with modern technologies and designed for production use, it supports multiple programming languages and provides enterprise-grade features.
+Kinetix.run is a serverless platform that enables developers to deploy and run functions at scale. Built with modern technologies and designed for production use, it supports multiple programming languages and provides enterprise-grade features.
 
 ## Features
 
@@ -135,11 +135,6 @@ curl -X POST http://localhost:3000/api/deployments \
 
 ## Documentation
 
-<!-- ### Phase Completions
-- **[Phase 1](docs/PHASE_1_COMPLETION.md)**: Monorepo setup, API, database schema
-- **[Phase 2](docs/PHASE_2_COMPLETION.md)**: Git integration and build system
-- **[Phase 3](docs/PHASE_3_COMPLETION.md)**: Edge router and function execution -->
-
 ### API Documentation
 - **REST API**: Comprehensive REST endpoints for all operations
 - **WebSocket**: Real-time deployment status and logs
@@ -225,7 +220,7 @@ pnpm db:studio
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+I welcome contributions! Please see the [Contributing Guide](CONTRIBUTING.md) for details.
 
 ### Development Setup
 1. Fork the repository
@@ -249,7 +244,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/1cbyc/kinetix.run/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/1cbyc/kinetix.run/discussions)
-- **Documentation**: [docs/](docs/)
+<!-- - **Documentation**: [docs/](docs/) -->
 
 ---
 
