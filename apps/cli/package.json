@@ -6,7 +6,7 @@
     "kinetix": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsup && chmod +x dist/index.js",
+    "build": "tsup",
     "dev": "tsx watch src/index.ts",
     "start": "./dist/index.js",
     "typecheck": "tsc --noEmit",

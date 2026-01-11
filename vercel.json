@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd apps/dashboard && pnpm install && pnpm build",
+  "outputDirectory": "apps/dashboard/.next",
+  "framework": "nextjs",
+  "installCommand": "pnpm install",
+  "devCommand": "cd apps/dashboard && pnpm dev",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@api_url"
+  }
+}

@@ -56,7 +56,7 @@ export default function ProjectDetailPage() {
   if (!project) {
     return (
       <div className="space-y-6">
-        <Button variant="ghost" size="sm" asChild>
+        <Button variant="ghost" size="sm" >
           <Link href="/dashboard/projects">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Projects
@@ -76,7 +76,7 @@ export default function ProjectDetailPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="sm" asChild>
+          <Button variant="ghost" size="sm" >
             <Link href="/dashboard/projects">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back

@@ -72,7 +72,7 @@ export default function DeploymentDetailPage() {
   if (!deployment) {
     return (
       <div className="space-y-6">
-        <Button variant="ghost" size="sm" asChild>
+        <Button variant="ghost" size="sm" >
           <Link href="/dashboard/projects">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Projects
@@ -96,7 +96,7 @@ export default function DeploymentDetailPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="sm" asChild>
+          <Button variant="ghost" size="sm" >
             <Link href="/dashboard/projects">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back
@@ -114,7 +114,7 @@ export default function DeploymentDetailPage() {
           </div>
         </div>
         {deployment.url && (
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" size="sm" >
             <a href={deployment.url} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-2 h-4 w-4" />
               View Site

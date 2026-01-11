@@ -58,7 +58,7 @@ export default function ProjectsPage() {
             Manage your serverless function projects
           </p>
         </div>
-        <Button asChild>
+        <Button >
           <Link href="/dashboard/projects/new">
             <Plus className="mr-2 h-4 w-4" />
             New Project
@@ -106,7 +106,7 @@ export default function ProjectsPage() {
                 : "Get started by creating your first project"}
             </p>
             {!search && (
-              <Button asChild>
+              <Button >
                 <Link href="/dashboard/projects/new">
                   <Plus className="mr-2 h-4 w-4" />
                   Create Project

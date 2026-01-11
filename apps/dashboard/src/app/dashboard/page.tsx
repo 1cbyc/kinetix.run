@@ -78,7 +78,7 @@ export default function DashboardPage() {
             Overview of your serverless functions and deployments
           </p>
         </div>
-        <Button asChild>
+        <Button >
           <Link href="/dashboard/projects/new">
             <Plus className="mr-2 h-4 w-4" />
             New Project
@@ -145,7 +145,7 @@ export default function DashboardPage() {
               <p className="text-sm text-foreground-secondary mb-4 text-center max-w-md">
                 Get started by creating your first project and deploying your serverless functions
               </p>
-              <Button asChild>
+              <Button >
                 <Link href="/dashboard/projects/new">
                   <Plus className="mr-2 h-4 w-4" />
                   Create Project

@@ -135,10 +135,10 @@ curl -X POST http://localhost:3000/api/deployments \
 
 ## Documentation
 
-### Phase Completions
+<!-- ### Phase Completions
 - **[Phase 1](docs/PHASE_1_COMPLETION.md)**: Monorepo setup, API, database schema
 - **[Phase 2](docs/PHASE_2_COMPLETION.md)**: Git integration and build system
-- **[Phase 3](docs/PHASE_3_COMPLETION.md)**: Edge router and function execution
+- **[Phase 3](docs/PHASE_3_COMPLETION.md)**: Edge router and function execution -->
 
 ### API Documentation
 - **REST API**: Comprehensive REST endpoints for all operations

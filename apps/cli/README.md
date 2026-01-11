@@ -18,6 +18,8 @@ pnpm link --global
 
 ## Usage
 
+**Note:** When installed via `pnpm link --global`, the CLI will be available as `kinetix`. For local testing, use `node dist/index.js`.
+
 ### Authentication
 
 ```bash

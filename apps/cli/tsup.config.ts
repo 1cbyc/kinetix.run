@@ -9,9 +9,6 @@ export default defineConfig({
   shims: false,
   splitting: false,
   sourcemap: true,
-  banner: {
-    js: "#!/usr/bin/env node",
-  },
   external: [],
   noExternal: ["commander", "chalk", "ora", "inquirer", "table", "conf", "open"],
 });
