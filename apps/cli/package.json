@@ -2,14 +2,13 @@
   "name": "@kinetix/cli",
   "version": "0.0.1",
   "description": "Command-line interface for Kinetix.run",
-  "type": "module",
   "bin": {
     "kinetix": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && chmod +x dist/index.js",
     "dev": "tsx watch src/index.ts",
-    "start": "node dist/index.js",
+    "start": "./dist/index.js",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist"
   },
