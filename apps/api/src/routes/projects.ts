@@ -34,7 +34,7 @@ projectRoutes.get("/", async (c) => {
 
   return c.json({
     success: true,
-    ...result,
+    data: result,
   });
 });
 
